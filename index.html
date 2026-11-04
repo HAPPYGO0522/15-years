@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>從現在開始的十五年 測驗解析</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Huninn&family=Noto+Sans+TC:wght@400;500&display=swap">
+<style>
+/* Layout: one phone-width column of letter cards with hard offset shadows; denim navy + brass, like a well-kept leather wallet */
+:root{
+  --bg:#E4E9EE; --card:#FBFCFD; --soft:#EDF1F5; --tile:#D9E1E9;
+  --ink:#18222D; --muted:#5A6673; --navy:#24405E; --brass:#9A6B25; --shadow:#18222D; --btn-ink:#FBFCFD;
+  --f-head:"Noto Serif TC","Songti TC",serif;
+  --f-round:"Huninn","Noto Sans TC","PingFang TC",sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151C; --card:#17202A; --soft:#1D2834; --tile:#22303E;
+  --ink:#E4E9EE; --muted:#97A4B1; --navy:#8DB3DA; --brass:#D9A85C; --shadow:#04070A; --btn-ink:#0F151C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151C; --card:#17202A; --soft:#1D2834; --tile:#22303E;
+  --ink:#E4E9EE; --muted:#97A4B1; --navy:#8DB3DA; --brass:#D9A85C; --shadow:#04070A; --btn-ink:#0F151C; color-scheme:dark}
+
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.85}
+.wrap{max-width:560px;margin:0 auto;padding-block:28px 56px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--f-head);font-weight:800;margin:0;text-wrap:balance;line-height:1.4}
+p{margin:0}
+.pill{align-self:flex-start;font-family:var(--f-round);font-size:13px;letter-spacing:.06em;background:var(--navy);color:var(--btn-ink);padding:4px 14px;border-radius:999px}
+.card{background:var(--card);border:2px solid var(--shadow);border-radius:18px;box-shadow:5px 5px 0 var(--shadow)}
+.muted{color:var(--muted)}
+
+/* landing */
+.intro{display:flex;flex-direction:column;gap:12px;text-align:center;align-items:center}
+.intro .pill{align-self:center}
+.intro h1{font-size:clamp(24px,6.4vw,30px)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px 10px;background:var(--tile);border-radius:12px;border:2px solid transparent;cursor:pointer;color:var(--ink);font:inherit;text-decoration:none}
+.tile:hover,.tile:focus-visible{border-color:var(--navy);outline:none}
+.tile svg{width:100%;max-width:130px;aspect-ratio:1;height:auto}
+.tile b{font-family:var(--f-round);font-weight:400;font-size:14px}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;gap:14px;padding:14px 16px;text-decoration:none;color:var(--ink);font-family:var(--f-round);font-size:16px}
+.opt:hover,.opt:focus-visible{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--shadow);outline:none}
+.letter{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--brass);font-family:var(--f-head);font-weight:800;border:1.5px solid var(--brass)}
+
+/* result */
+.res-head{display:flex;flex-direction:column;gap:10px}
+.res-head h1{font-size:clamp(23px,6vw,28px)}
+.res-head .chosen{font-size:13.5px;color:var(--muted)}
+.res-art{align-self:flex-end;width:84px;height:84px;margin-bottom:-14px;background:var(--tile);border-radius:50%;border:2px solid var(--shadow);display:grid;place-items:center}
+.res-art svg{width:66px;height:66px}
+.quote{padding:16px 18px;border-left:5px solid var(--navy);border-radius:10px 14px 14px 10px;font-family:var(--f-head);font-weight:600;font-size:17px;line-height:1.7}
+.letter-card{padding:22px 20px;display:flex;flex-direction:column;gap:22px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.sec h3{font-family:var(--f-round);font-weight:400;font-size:14.5px;color:var(--brass);letter-spacing:.04em}
+.sec p+p{margin-top:6px}
+.steps{background:var(--soft);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:14px}
+.steps b{display:block;font-weight:500}
+.say{font-family:var(--f-head);font-weight:600;font-size:17px}
+
+/* community */
+.join{padding:22px 20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--f-round);font-size:13px;letter-spacing:.12em;color:var(--brass)}
+.join h2{font-size:24px}
+.btn{align-self:flex-start;display:inline-block;padding:11px 26px;border-radius:999px;background:var(--navy);color:var(--btn-ink);text-decoration:none;font-family:var(--f-round);font-size:16px;border:2px solid var(--shadow);box-shadow:3px 3px 0 var(--shadow)}
+.btn.off{background:var(--soft);color:var(--muted);box-shadow:none;cursor:default}
+.btn:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.code{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:2px dashed var(--brass);border-radius:14px;background:var(--soft);font-family:var(--f-round)}
+.code strong{color:var(--brass);font-weight:400;font-size:18px;letter-spacing:.06em}
+.copy{flex:none;font:inherit;font-size:14px;padding:6px 16px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer}
+
+/* others */
+.others{display:flex;flex-direction:column;gap:12px}
+.others h2{font-size:22px}
+details.card{padding:0;box-shadow:3px 3px 0 var(--shadow)}
+details summary{list-style:none;cursor:pointer;padding:13px 16px;font-family:var(--f-round);display:flex;gap:8px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸";color:var(--brass)}
+details[open] summary::before{content:"▾"}
+details .in{padding:0 16px 14px;display:flex;flex-direction:column;gap:8px}
+details .in a{color:var(--navy);font-size:14px}
+.close{padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+.close h2{font-size:21px}
+.sign{font-family:var(--f-round);color:var(--muted);text-align:right}
+footer{font-size:12px;color:var(--muted);line-height:1.7;text-align:center}
+.back{align-self:center;font-family:var(--f-round);color:var(--navy);font-size:14px}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ill-a" viewBox="0 0 120 120">
+      <ellipse cx="60" cy="108" rx="40" ry="4.5" fill="#000" opacity=".1"/><g transform="rotate(0 60 106)"><rect x="48.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="53.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="62.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="67.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M46.0 94.0 Q44.0 72.0 60 70.0 Q76.0 72.0 74.0 94.0 Z" fill="#9FB7D9" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M55.0 71.0 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/><circle cx="60" cy="44.0" r="25.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M34.0 50.0 Q31.0 17.0 60 18.0 Q89.0 17.0 86.0 50.0 Q83.0 38.0 74.0 36.0 L70.0 42.0 L66.0 34.0 L60 40.0 L55.0 33.0 L49.0 41.0 L45.0 35.0 Q37.0 38.0 34.0 50.0 Z" fill="#3A2A24" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M46.0 27.0 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/><path d="M62.0 19.0 q2 -9 9 -10 q-5 4 -5 10" fill="#3A2A24" stroke="#2B2320" stroke-width="2" stroke-linejoin="round"/><ellipse cx="45.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><ellipse cx="75.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><path d="M47.0 48.0 q4 -6 8 0 M65.0 48.0 q4 -6 8 0" fill="none" stroke="#2B2320" stroke-width="2.6" stroke-linecap="round"/><path d="M56.0 57.0 q4 4 8 0" fill="none" stroke="#2B2320" stroke-width="2.2" stroke-linecap="round"/><path d="M47.0 76.0 L66.0 83.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M47.0 76.0 L66.0 83.0" stroke="#9FB7D9" stroke-width="5.0" stroke-linecap="round"/><circle cx="66.0" cy="83.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M73.0 76.0 L54.0 83.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M73.0 76.0 L54.0 83.0" stroke="#9FB7D9" stroke-width="5.0" stroke-linecap="round"/><circle cx="54.0" cy="83.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/></g><ellipse cx="60" cy="86" rx="16" ry="12" fill="#F7A8B8" stroke="#2B2320" stroke-width="2.4"/><circle cx="54" cy="83" r="1.8" fill="#2B2320"/><ellipse cx="66" cy="87" rx="5" ry="4" fill="#F4C2CE" stroke="#2B2320" stroke-width="1.6"/><path d="M50 75 l3 -5 3 5 M64 75 l3 -5 3 5" fill="#F7A8B8" stroke="#2B2320" stroke-width="1.8" stroke-linejoin="round"/><circle cx="96" cy="96" r="7" fill="#F7C948" stroke="#2B2320" stroke-width="2"/><circle cx="96" cy="96" r="3.5" fill="none" stroke="#D9A21E" stroke-width="1.6"/><circle cx="104" cy="84" r="6" fill="#F7C948" stroke="#2B2320" stroke-width="2"/><circle cx="104" cy="84" r="3.0" fill="none" stroke="#D9A21E" stroke-width="1.6"/><circle cx="92" cy="24" r="6" fill="#F7C948" stroke="#2B2320" stroke-width="2"/><circle cx="92" cy="24" r="3.0" fill="none" stroke="#D9A21E" stroke-width="1.6"/>
+    </symbol>
+    <symbol id="ill-b" viewBox="0 0 120 120">
+      <ellipse cx="60" cy="108" rx="40" ry="4.5" fill="#000" opacity=".1"/><g stroke="#B7C7D6" stroke-width="2.6" stroke-linecap="round"><path d="M8 60 h14"/><path d="M4 74 h16"/><path d="M10 88 h12"/></g><g transform="rotate(6 60 106)"><rect x="48.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="53.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="62.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="67.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M46.0 94.0 Q44.0 72.0 60 70.0 Q76.0 72.0 74.0 94.0 Z" fill="#7FC8A9" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M55.0 71.0 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/><path d="M47.0 76.0 L40.0 74.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M47.0 76.0 L40.0 74.0" stroke="#7FC8A9" stroke-width="5.0" stroke-linecap="round"/><circle cx="40.0" cy="74.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M73.0 76.0 L78.0 84.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M73.0 76.0 L78.0 84.0" stroke="#7FC8A9" stroke-width="5.0" stroke-linecap="round"/><circle cx="78.0" cy="84.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><circle cx="60" cy="44.0" r="25.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M34.0 50.0 Q31.0 17.0 60 18.0 Q89.0 17.0 86.0 50.0 Q83.0 38.0 74.0 36.0 L70.0 42.0 L66.0 34.0 L60 40.0 L55.0 33.0 L49.0 41.0 L45.0 35.0 Q37.0 38.0 34.0 50.0 Z" fill="#3A2A24" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M46.0 27.0 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/><path d="M62.0 19.0 q2 -9 9 -10 q-5 4 -5 10" fill="#3A2A24" stroke="#2B2320" stroke-width="2" stroke-linejoin="round"/><ellipse cx="45.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><ellipse cx="75.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><ellipse cx="51.0" cy="47.0" rx="4.6" ry="6.0" fill="#3A2A24"/><ellipse cx="51.0" cy="49.0" rx="3.0" ry="3.0" fill="#7A5A4A"/><circle cx="52.6" cy="44.6" r="1.9" fill="#fff"/><circle cx="49.4" cy="49.6" r="0.9" fill="#fff"/><ellipse cx="69.0" cy="47.0" rx="4.6" ry="6.0" fill="#3A2A24"/><ellipse cx="69.0" cy="49.0" rx="3.0" ry="3.0" fill="#7A5A4A"/><circle cx="70.6" cy="44.6" r="1.9" fill="#fff"/><circle cx="67.4" cy="49.6" r="0.9" fill="#fff"/><path d="M55.0 56.0 q5 8 10 0 Z" fill="#E86A6A" stroke="#2B2320" stroke-width="2" stroke-linejoin="round"/></g><path d="M38 30 Q60 20 84 32" fill="none" stroke="#F2606B" stroke-width="5" stroke-linecap="round"/><path d="M100 32.8 C86.8 24 89.0 14.1 95.6 15.2 C97.8 15.2 100 17.4 100 19.6 C100 17.4 102.2 15.2 104.4 15.2 C111.0 14.1 113.2 24 100 32.8 Z" fill="#F2606B" stroke="#2B2320" stroke-width="2"/>
+    </symbol>
+    <symbol id="ill-c" viewBox="0 0 120 120">
+      <ellipse cx="60" cy="108" rx="40" ry="4.5" fill="#000" opacity=".1"/><g transform="rotate(0 22 106)"><rect x="13.72" y="95.92" width="6.4799999999999995" height="7.199999999999999" rx="2.16" fill="#8C7B6B" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="16.96" cy="104.92" rx="4.68" ry="2.592" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="23.8" y="95.92" width="6.4799999999999995" height="7.199999999999999" rx="2.16" fill="#8C7B6B" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="27.04" cy="104.92" rx="4.68" ry="2.592" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M11.92 97.36 Q10.48 81.52 22 80.08 Q33.519999999999996 81.52 32.08 97.36 Z" fill="#C9B79C" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M18.4 80.8 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="1.584" stroke-linecap="round"/><path d="M12.64 84.4 L8.32 93.75999999999999" stroke="#2B2320" stroke-width="6.4799999999999995" stroke-linecap="round"/><path d="M12.64 84.4 L8.32 93.75999999999999" stroke="#C9B79C" stroke-width="3.5999999999999996" stroke-linecap="round"/><circle cx="8.32" cy="93.75999999999999" r="3.312" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M31.36 84.4 L35.68 93.75999999999999" stroke="#2B2320" stroke-width="6.4799999999999995" stroke-linecap="round"/><path d="M31.36 84.4 L35.68 93.75999999999999" stroke="#C9B79C" stroke-width="3.5999999999999996" stroke-linecap="round"/><circle cx="35.68" cy="93.75999999999999" r="3.312" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><circle cx="22" cy="61.36" r="18.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M3.2800000000000002 65.68 Q1.12 41.92 22 42.64 Q42.88 41.92 40.72 65.68 Q38.56 57.04 32.08 55.6 L29.2 59.92 L26.32 54.16 L22 58.48 L18.4 53.44 L14.08 59.2 L11.200000000000001 54.88 Q5.4399999999999995 57.04 3.2800000000000002 65.68 Z" fill="#E3DDD5" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M11.92 49.12 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="1.728" stroke-linecap="round"/><ellipse cx="11.200000000000001" cy="68.56" rx="3.5999999999999996" ry="2.304" fill="#F7A1AE" opacity=".8"/><ellipse cx="32.8" cy="68.56" rx="3.5999999999999996" ry="2.304" fill="#F7A1AE" opacity=".8"/><ellipse cx="15.52" cy="63.519999999999996" rx="3.312" ry="4.32" fill="#3A2A24"/><ellipse cx="15.52" cy="64.96" rx="2.16" ry="2.16" fill="#7A5A4A"/><circle cx="16.672" cy="61.791999999999994" r="1.3679999999999999" fill="#fff"/><circle cx="14.368" cy="65.392" r="0.648" fill="#fff"/><ellipse cx="28.48" cy="63.519999999999996" rx="3.312" ry="4.32" fill="#3A2A24"/><ellipse cx="28.48" cy="64.96" rx="2.16" ry="2.16" fill="#7A5A4A"/><circle cx="29.632" cy="61.791999999999994" r="1.3679999999999999" fill="#fff"/><circle cx="27.328" cy="65.392" r="0.648" fill="#fff"/><path d="M19.12 70.72 q4 4 8 0" fill="none" stroke="#2B2320" stroke-width="2.2" stroke-linecap="round"/></g><g transform="rotate(0 98 106)"><rect x="89.72" y="95.92" width="6.4799999999999995" height="7.199999999999999" rx="2.16" fill="#8C7B6B" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="92.96" cy="104.92" rx="4.68" ry="2.592" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="99.80000000000001" y="95.92" width="6.4799999999999995" height="7.199999999999999" rx="2.16" fill="#8C7B6B" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="103.04" cy="104.92" rx="4.68" ry="2.592" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M87.92 97.36 Q86.48 81.52 98 80.08 Q109.52 81.52 108.08 97.36 Z" fill="#B9A3D9" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M94.4 80.8 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="1.584" stroke-linecap="round"/><path d="M88.64 84.4 L84.32 93.75999999999999" stroke="#2B2320" stroke-width="6.4799999999999995" stroke-linecap="round"/><path d="M88.64 84.4 L84.32 93.75999999999999" stroke="#B9A3D9" stroke-width="3.5999999999999996" stroke-linecap="round"/><circle cx="84.32" cy="93.75999999999999" r="3.312" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M107.36 84.4 L111.68 93.75999999999999" stroke="#2B2320" stroke-width="6.4799999999999995" stroke-linecap="round"/><path d="M107.36 84.4 L111.68 93.75999999999999" stroke="#B9A3D9" stroke-width="3.5999999999999996" stroke-linecap="round"/><circle cx="111.68" cy="93.75999999999999" r="3.312" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><circle cx="98" cy="61.36" r="18.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M79.28 65.68 Q77.12 41.92 98 42.64 Q118.88 41.92 116.72 65.68 Q114.56 57.04 108.08 55.6 L105.2 59.92 L102.32 54.16 L98 58.48 L94.4 53.44 L90.08 59.2 L87.2 54.88 Q81.44 57.04 79.28 65.68 Z" fill="#E3DDD5" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M87.92 49.12 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="1.728" stroke-linecap="round"/><ellipse cx="87.2" cy="68.56" rx="3.5999999999999996" ry="2.304" fill="#F7A1AE" opacity=".8"/><ellipse cx="108.8" cy="68.56" rx="3.5999999999999996" ry="2.304" fill="#F7A1AE" opacity=".8"/><ellipse cx="91.52" cy="63.519999999999996" rx="3.312" ry="4.32" fill="#3A2A24"/><ellipse cx="91.52" cy="64.96" rx="2.16" ry="2.16" fill="#7A5A4A"/><circle cx="92.672" cy="61.791999999999994" r="1.3679999999999999" fill="#fff"/><circle cx="90.368" cy="65.392" r="0.648" fill="#fff"/><ellipse cx="104.48" cy="63.519999999999996" rx="3.312" ry="4.32" fill="#3A2A24"/><ellipse cx="104.48" cy="64.96" rx="2.16" ry="2.16" fill="#7A5A4A"/><circle cx="105.632" cy="61.791999999999994" r="1.3679999999999999" fill="#fff"/><circle cx="103.328" cy="65.392" r="0.648" fill="#fff"/><path d="M95.12 70.72 q4 4 8 0" fill="none" stroke="#2B2320" stroke-width="2.2" stroke-linecap="round"/></g><g transform="rotate(0 60 106)"><rect x="50.339999999999996" y="94.24" width="7.56" height="8.4" rx="2.52" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="54.12" cy="104.74" rx="5.46" ry="3.024" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="62.099999999999994" y="94.24" width="7.56" height="8.4" rx="2.52" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="65.88" cy="104.74" rx="5.46" ry="3.024" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M48.24 95.92 Q46.56 77.44000000000001 60 75.76 Q73.44 77.44000000000001 71.76 95.92 Z" fill="#F6B26B" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M55.8 76.60000000000001 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="1.848" stroke-linecap="round"/><path d="M49.08 80.80000000000001 L41.519999999999996 69.04" stroke="#2B2320" stroke-width="7.56" stroke-linecap="round"/><path d="M49.08 80.80000000000001 L41.519999999999996 69.04" stroke="#F6B26B" stroke-width="4.2" stroke-linecap="round"/><circle cx="41.519999999999996" cy="69.04" r="3.8639999999999994" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M70.92 80.80000000000001 L78.48 69.04" stroke="#2B2320" stroke-width="7.56" stroke-linecap="round"/><path d="M70.92 80.80000000000001 L78.48 69.04" stroke="#F6B26B" stroke-width="4.2" stroke-linecap="round"/><circle cx="78.48" cy="69.04" r="3.8639999999999994" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><circle cx="60" cy="53.92" r="21.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M38.16 58.96 Q35.64 31.240000000000002 60 32.08 Q84.36 31.240000000000002 81.84 58.96 Q79.32 48.88 71.76 47.2 L68.4 52.24 L65.04 45.52 L60 50.56 L55.8 44.68 L50.76 51.4 L47.4 46.36 Q40.68 48.88 38.16 58.96 Z" fill="#3A2A24" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M48.24 39.64 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="2.016" stroke-linecap="round"/><path d="M61.68 32.92 q2 -9 9 -10 q-5 4 -5 10" fill="#3A2A24" stroke="#2B2320" stroke-width="2" stroke-linejoin="round"/><ellipse cx="47.4" cy="62.32" rx="4.2" ry="2.688" fill="#F7A1AE" opacity=".8"/><ellipse cx="72.6" cy="62.32" rx="4.2" ry="2.688" fill="#F7A1AE" opacity=".8"/><path d="M49.08 57.28000000000001 q4 -6 8 0 M64.2 57.28000000000001 q4 -6 8 0" fill="none" stroke="#2B2320" stroke-width="2.6" stroke-linecap="round"/><path d="M56.64 64.84 q4 4 8 0" fill="none" stroke="#2B2320" stroke-width="2.2" stroke-linecap="round"/></g><path d="M88 29.2 C77.2 22 79.0 13.9 84.4 14.8 C86.2 14.8 88 16.6 88 18.4 C88 16.6 89.8 14.8 91.6 14.8 C97.0 13.9 98.8 22 88 29.2 Z" fill="#F2606B" stroke="#2B2320" stroke-width="2"/>
+    </symbol>
+    <symbol id="ill-d" viewBox="0 0 120 120">
+      <ellipse cx="60" cy="108" rx="40" ry="4.5" fill="#000" opacity=".1"/><g transform="rotate(0 60 106)"><rect x="48.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="53.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><rect x="62.5" y="92.0" width="9.0" height="10.0" rx="3.0" fill="#5B6B86" stroke="#2B2320" stroke-width="2.2"/><ellipse cx="67.0" cy="104.5" rx="6.5" ry="3.6" fill="#FFFFFF" stroke="#2B2320" stroke-width="2.2"/><path d="M46.0 94.0 Q44.0 72.0 60 70.0 Q76.0 72.0 74.0 94.0 Z" fill="#F2A3C0" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M55.0 71.0 q5 5 10 0" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/><circle cx="60" cy="44.0" r="25.0" fill="#FDE3D0" stroke="#2B2320" stroke-width="2.6"/><path d="M34.0 50.0 Q31.0 17.0 60 18.0 Q89.0 17.0 86.0 50.0 Q83.0 38.0 74.0 36.0 L70.0 42.0 L66.0 34.0 L60 40.0 L55.0 33.0 L49.0 41.0 L45.0 35.0 Q37.0 38.0 34.0 50.0 Z" fill="#3A2A24" stroke="#2B2320" stroke-width="2.4" stroke-linejoin="round"/><path d="M46.0 27.0 q6 -5 14 -5" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/><path d="M62.0 19.0 q2 -9 9 -10 q-5 4 -5 10" fill="#3A2A24" stroke="#2B2320" stroke-width="2" stroke-linejoin="round"/><ellipse cx="45.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><ellipse cx="75.0" cy="54.0" rx="5.0" ry="3.2" fill="#F7A1AE" opacity=".8"/><path d="M47.0 48.0 q4 -6 8 0 M65.0 48.0 q4 -6 8 0" fill="none" stroke="#2B2320" stroke-width="2.6" stroke-linecap="round"/><path d="M56.0 57.0 q4 4 8 0" fill="none" stroke="#2B2320" stroke-width="2.2" stroke-linecap="round"/><path d="M47.0 76.0 L66.0 83.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M47.0 76.0 L66.0 83.0" stroke="#F2A3C0" stroke-width="5.0" stroke-linecap="round"/><circle cx="66.0" cy="83.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/><path d="M73.0 76.0 L54.0 83.0" stroke="#2B2320" stroke-width="9.0" stroke-linecap="round"/><path d="M73.0 76.0 L54.0 83.0" stroke="#F2A3C0" stroke-width="5.0" stroke-linecap="round"/><circle cx="54.0" cy="83.0" r="4.6" fill="#FDE3D0" stroke="#2B2320" stroke-width="2"/></g><path d="M22 17.6 l2.4 6.0 6.0 2.4 -6.0 2.4 -2.4 6.0 -2.4 -6.0 -6.0 -2.4 6.0 -2.4 Z" fill="#F7C948" stroke="#2B2320" stroke-width="1.6"/><path d="M100 25 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z" fill="#F7C948" stroke="#2B2320" stroke-width="1.6"/><path d="M98 72.4 C88.4 66 90.0 58.8 94.8 59.6 C96.4 59.6 98 61.2 98 62.8 C98 61.2 99.6 59.6 101.2 59.6 C106.0 58.8 107.6 66 98 72.4 Z" fill="#F2606B" stroke="#2B2320" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- landing -->
+  <section id="home" class="wrap-inner" style="display:flex;flex-direction:column;gap:22px">
+    <div class="intro">
+      <span class="pill">心理測驗 · 從現在開始的十五年</span>
+      <h1>如果接下來的十五年<br>只能先顧好一件事，你會選？</h1>
+      <p class="muted">不用想太久，心裡最先浮出來的那個就是。</p>
+    </div>
+    <div class="card tiles">
+      <a class="tile" href="#a"><svg><use href="#ill-a"/></svg><b>A｜顧好錢</b></a>
+      <a class="tile" href="#b"><svg><use href="#ill-b"/></svg><b>B｜顧好身體</b></a>
+      <a class="tile" href="#c"><svg><use href="#ill-c"/></svg><b>C｜顧好家人</b></a>
+      <a class="tile" href="#d"><svg><use href="#ill-d"/></svg><b>D｜顧好自己</b></a>
+    </div>
+    <div class="opts">
+      <a class="card opt" href="#a"><span class="letter">A</span>把錢顧好，讓自己有底氣</a>
+      <a class="card opt" href="#b"><span class="letter">B</span>把身體顧好，才走得遠</a>
+      <a class="card opt" href="#c"><span class="letter">C</span>把家人顧好，陪他們慢慢變老</a>
+      <a class="card opt" href="#d"><span class="letter">D</span>把自己顧好，活成想要的樣子</a>
+    </div>
+  </section>
+
+  <!-- result -->
+  <section id="result" hidden style="display:flex;flex-direction:column;gap:22px">
+    <div class="res-head">
+      <span class="pill">給你的一封小短信</span>
+      <h1 id="r-title"></h1>
+      <p class="chosen" id="r-chosen"></p>
+    </div>
+    <div class="res-art"><svg><use id="r-art" href="#ill-a"/></svg></div>
+    <p class="card quote" id="r-quote"></p>
+    <article class="card letter-card" id="r-body"></article>
+
+    <section class="card join" id="join">
+      <span class="eyebrow">上班族的加密貨幣學習社群</span>
+      <h2>十五年後的底氣，從現在開始存</h2>
+      <p>不管你最想顧好的是錢、身體、家人還是自己，背後都需要一份準備。這十五年，決定了你下半輩子的樣子。不管你是哪一型，第一步都一樣：把錢的事學懂。這裡有一群跟你一樣的上班族，一起從零開始學。</p>
+      <a class="btn" id="join-btn" href="#join" target="_blank" rel="noopener">加入社群 →</a>
+      <div class="code">
+        <span id="code-text">入群暗號「<strong id="code">十五年</strong>」，可以先領新手入門筆記</span>
+        <button class="copy" id="copy-btn" type="button">複製</button>
+      </div>
+    </section>
+
+    <section class="others">
+      <h2>也看看另外三種心情</h2>
+      <div id="r-others" class="others"></div>
+    </section>
+
+    <section class="card close">
+      <h2>以後的你，會謝謝現在的你</h2>
+      <p>不用一次做到全部，一點一點準備就好。從今天開始的每一天，都在決定以後的樣子。</p>
+      <p>今天，替十五年後的自己做一件小事吧。</p>
+      <p class="sign" id="sign"></p>
+    </section>
+    <a class="back" href="#home">← 回到題目</a>
+  </section>
+
+  <footer>加密貨幣價格波動很大，可能損失全部本金。本頁為心理測驗與學習分享，不構成任何投資建議。</footer>
+</div>
+
+<script>
+/* ===== 這裡改成你自己的資料（引號請用半形 " ） ===== */
+window.CONFIG = {
+  name: "[你的名字]",            // 發文者署名
+  joinUrl: "",                   // 社群連結，例如 https://line.me/ti/g2/xxxx
+  code: "十五年"                   // 入群暗號
+};
+/* ================================ */
+</script>
+<script>
+const CONFIG = Object.assign({ name: "", joinUrl: "", code: "" }, window.CONFIG || {});
+
+const R = {
+ "a": {
+  "title": "你想要的，是不用看人臉色的底氣",
+  "chosen": "你選了 A｜把錢顧好，讓自己有底氣",
+  "quote": "錢不是全部，但它讓你有說「不」的權利。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你很清楚，很多委屈和不安，都跟錢有關。你想要的不是多有錢，而是遇到事情時，不用慌、不用求人。",
+     "你很務實，也很早就開始替以後打算。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你可能看過、經歷過因為錢而低頭的時刻，所以你知道底氣有多重要。這份清醒，是你給自己最好的保護。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "看到帳戶數字多一點就安心；別人揪團出去玩，你會先算這個月還剩多少；常常想「如果有一筆錢，我就能⋯⋯」。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "想要底氣，順序很重要：先存三到六個月的預備金，再把錢的知識一點一點學起來，最後才是用看得懂的方法慢慢累積。不懂的不碰，不用借來的錢投資，也小心那些保證獲利的說法。底氣不是一次賺來的，是慢慢存出來的。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "算一次自己的預備金夠不夠",
+    "沒有收入的話，能撐幾個月？"
+   ],
+   [
+    "發薪日先存再花",
+    "先把未來的自己顧好。"
+   ],
+   [
+    "找人一起把錢的事學懂",
+    "有人討論，走得比較穩。"
+   ]
+  ],
+  "ask": "如果錢夠用了，你最想對誰說「不」？",
+  "say": "我存的不只是錢，是以後的底氣。"
+ },
+ "b": {
+  "title": "你知道，身體是所有事的本錢",
+  "chosen": "你選了 B｜把身體顧好，才走得遠",
+  "quote": "走得快不如走得遠，走得遠要先顧好自己。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你知道再多計畫，身體撐不住都是空談。你想要的是十五年後，還能有力氣去做想做的事。",
+     "你很懂得照顧自己，也常常提醒身邊的人別太累。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你可能看過身邊的人因為身體出狀況，生活一下子全變了。所以你比別人更早明白，健康才是一切的開始。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "熬夜後會懊惱一整天；開始在意睡眠和運動；看到爸媽身體變差，會默默擔心。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "身體出狀況時，最怕的是收入停了、開銷卻變多。所以顧身體的另一半，是顧好錢：準備一筆預備金，看懂自己的保障夠不夠（不懂的保單先問清楚，不要急著買）。身體和錢都有底，才能安心休息、慢慢恢復。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "這週固定睡滿三天",
+    "睡飽是最便宜的保養。"
+   ],
+   [
+    "看懂一張自己的保單",
+    "不懂的地方寫下來問。"
+   ],
+   [
+    "存一筆生病也不用慌的錢",
+    "讓自己可以安心休息。"
+   ]
+  ],
+  "ask": "十五年後，你最想用健康的身體去做什麼？",
+  "say": "我照顧好身體，才能照顧好想要的人生。"
+ },
+ "c": {
+  "title": "你最想守住的，是家人的笑容",
+  "chosen": "你選了 C｜把家人顧好，陪他們慢慢變老",
+  "quote": "陪伴是最好的禮物，準備是最深的愛。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你一想到十五年後，最先想到的是爸媽會老、家人需要你。你想要的，是那時候有能力陪在他們身邊。",
+     "你很重感情，家人一直是你心裡最重的那一塊。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你可能已經發現，爸媽的白頭髮越來越多，回家的次數卻越來越少。所以你想趁還來得及，把該準備的準備好。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "看到爸媽爬樓梯變慢，心裡會酸一下；家族群組裡的長輩圖，你都會點開看；常常想「再多賺一點，就能讓他們過好一點」。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "想顧好家人，先從看清楚開始：爸媽有沒有自己的退休金和保障？以後的醫療和照顧，大概需要多少？跟家人聊聊、一起規劃，比一個人默默扛好很多。也記得先顧好自己的預備金，你穩了，才能成為家人的依靠。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "這週打一通電話回家",
+    "不用有事，問問近況就好。"
+   ],
+   [
+    "跟家人聊一次以後的打算",
+    "退休、醫療、照顧，都可以慢慢聊。"
+   ],
+   [
+    "先存好自己的預備金",
+    "你穩了，家人才安心。"
+   ]
+  ],
+  "ask": "十五年後，你最想陪家人一起做什麼？",
+  "say": "我想陪他們變老，也有能力照顧他們。"
+ },
+ "d": {
+  "title": "你想活成自己喜歡的樣子",
+  "chosen": "你選了 D｜把自己顧好，活成想要的樣子",
+  "quote": "你不用活成別人期待的樣子，活成自己喜歡的就好。",
+  "secs": [
+   [
+    "你選的，其實是一種心情",
+    [
+     "你知道人生很長，也很短。你最想要的，是十五年後回頭看，能說一句「我有好好為自己活」。",
+     "你很有想法，心裡一直有一個想成為的自己。"
+    ]
+   ],
+   [
+    "這份心情，背後是什麼",
+    [
+     "你可能花了很多年在照顧別人的期待，現在想把一點力氣留給自己：想學的、想去的、想試的。"
+    ]
+   ],
+   [
+    "如果這些日常讓你有共鳴",
+    [
+     "收藏了很多想去的地方；常常想「如果現在不做，以後會不會後悔」；看到別人活出自己的樣子，會很羨慕。"
+    ]
+   ],
+   [
+    "在錢這件事上，可以怎麼練習",
+    [
+     "想活成自己的樣子，需要的是「選擇的自由」，而自由很大一部分來自錢。試著把錢分成兩份：一份存起來、慢慢學習累積，給以後的自己；一份拿來投資自己，上課、旅行、嘗試新的事。不用一次 all in，也不要借錢去拚，一步一步來，路會越走越寬。"
+    ]
+   ]
+  ],
+  "steps": [
+   [
+    "寫下十五年後想成為的自己",
+    "越具體越好。"
+   ],
+   [
+    "每個月留一筆投資自己的錢",
+    "學東西、嘗試新的事。"
+   ],
+   [
+    "找一群也在變好的人",
+    "一起走，會走得更遠。"
+   ]
+  ],
+  "ask": "十五年後的你，最希望現在的你先做哪一件事？",
+  "say": "我會好好為自己活，一步一步來。"
+ }
+};
+const SHORT = {"a": "你想要的，是不用看人臉色的底氣", "b": "你知道，身體是所有事的本錢", "c": "你最想守住的，是家人的笑容", "d": "你想活成自己喜歡的樣子"};
+const nums = ["①","②","③"];
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function render(k){
+  const r = R[k];
+  $("r-title").textContent = r.title;
+  $("r-chosen").textContent = r.chosen;
+  $("r-quote").textContent = r.quote;
+  $("r-art").setAttribute("href", "#ill-" + k);
+  let h = r.secs.map(([t, ps]) => `<div class="sec"><h3>${t}</h3>${ps.map(p => `<p>${esc(p)}</p>`).join("")}</div>`).join("");
+  h += `<div class="sec"><h3>今天就能開始的三件小事</h3><div class="steps">${r.steps.map((s,i)=>`<div><b>${nums[i]} ${s[0]}</b>${s[1]}</div>`).join("")}</div></div>`;
+  h += `<div class="sec"><h3>留一個問題給自己</h3><p>${r.ask}</p></div>`;
+  h += `<div class="sec"><h3>也送給自己這句話</h3><p class="say">「${r.say}」</p></div>`;
+  $("r-body").innerHTML = h;
+  $("r-others").innerHTML = Object.keys(R).filter(x => x !== k).map(x =>
+    `<details class="card"><summary><b>${x.toUpperCase()}</b>｜${SHORT[x]}</summary><div class="in"><p class="muted">${R[x].quote}</p><a href="#${x}">看完整解析</a></div></details>`).join("");
+}
+function show(k){
+  if (k && k !== "home" && !(k in R)) return;
+  const isRes = k in R;
+  $("home").hidden = isRes;
+  $("result").hidden = !isRes;
+  if (isRes) render(k);
+  window.scrollTo(0, 0);
+}
+$("sign").textContent = CONFIG.name ? "— " + CONFIG.name : "";
+$("code").textContent = CONFIG.code;
+(function setupJoin(){
+  const btn = $("join-btn");
+  let url = String(CONFIG.joinUrl || "").trim();
+  if (url && !/^https?:\/\//i.test(url)) url = "https://" + url;
+  if (url) { btn.href = url; return; }
+  btn.removeAttribute("href"); btn.removeAttribute("target");
+  btn.setAttribute("aria-disabled", "true");
+  btn.classList.add("off");
+  btn.textContent = "社群連結準備中";
+})();
+function copyText(text){
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+  return new Promise((ok, fail) => {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, text.length);
+    let done = false; try { done = document.execCommand("copy"); } catch (e) {}
+    ta.remove(); done ? ok() : fail();
+  });
+}
+$("copy-btn").addEventListener("click", () => {
+  const b = $("copy-btn");
+  copyText(CONFIG.code).then(() => {
+    b.textContent = "已複製"; setTimeout(() => b.textContent = "複製", 1500);
+  }).catch(() => {
+    getSelection().selectAllChildren($("code")); b.textContent = "請長按複製";
+  });
+});
+function route(){ show((location.hash || "").slice(1).toLowerCase()); }
+function go(k){
+  try { history.pushState(null, "", "#" + k); } catch (e) {}
+  show(k);
+}
+document.addEventListener("click", (e) => {
+  const a = e.target.closest && e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const k = a.getAttribute("href").slice(1).toLowerCase();
+  if (k !== "home" && !(k in R)) return;
+  e.preventDefault();
+  go(k);
+});
+window.addEventListener("hashchange", route);
+window.addEventListener("popstate", route);
+route();
+</script>
+</body>
+</html>
